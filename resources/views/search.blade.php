@@ -9,8 +9,8 @@
         <h2 class="text-center my-4">Our Products</h2>
 
         <div class="row">
-            @if($products->isNotEmpty())
 
+            @if($products->isNotEmpty())
                     <div class="row">
                         <div class="col-md-12 my-2">
                             <form  method="GET">
@@ -47,8 +47,6 @@
                             </form>
                         </div>
                     </div>
-
-
 
             @foreach($products as $item)
                 <div class="col-md-4 my-2">

@@ -17,35 +17,29 @@ class HomeController extends Controller
         $search = $request->search;
         $categories = Category::latest()->get();
 
+        $categoryByProduct = Category::query()
+            ->where('category_name', 'LIKE', "%{$search}%")->with(['products'])->get();
+
         $products = Product::query()->with(['category'])
             ->where('product_name', 'LIKE', "%{$search}%")
             ->orWhere('description', 'LIKE', "%{$search}%")
             ->latest()->get();
-//        $products = Product::where('category_id', $category->id)->get();
+        $searchProduct = $products->pluck('id')->toArray();
+//        return $searchProduct;
 
         if($request->filter){
             if($request->category_id){
-                $products = Product::where('category_id',$request->category_id)->get();
-
+                $products = Product::whereIn('id',$searchProduct)->where('category_id',$request->category_id)->get();
             }
-
             if($request->price == 'asc'){
-                $products = Product::orderBy('price', 'ASC')->get();
-
+                $products = Product::whereIn('id',$searchProduct)->orderBy('price', 'ASC')->get();
             }
             if($request->price == 'desc'){
-                $products = Product::orderBy('price', 'DESC')->get();
-
+                $products = Product::whereIn('id',$searchProduct)->orderBy('price', 'DESC')->get();
             }
-
-
-//            $category = $request->category_id;
-//            $price = $request->price;
-//            return $category.' --'.$price;
         }
 
-
-        return view('search', compact('products', 'categories'));
+        return view('search', compact('products', 'categories', 'categoryByProduct'));
 
     }
 
