@@ -56,7 +56,7 @@
                         <img src="{{ asset($item->image) }}" class="card-img-top" alt="Product Image" height="200px" width="150px">
                         <div class="card-body">
                             <h5 class="card-title">{{ $item->product_name }}</h5>
-                            <p class="card-text">{{ $item->price }} Tk</p>
+                            <p class="card-text">{{ number_format($item->price)  }} Tk</p>
                             <p class="card-text">{{ Str::limit($item->description, 80)  }} </p>
                             <a href="#" class="btn btn-success mr-3">Order</a>
                             <a href="#" class="btn btn-primary float-end">Details</a>
