@@ -40,11 +40,8 @@
                                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                            </li>
                         </ul>
-                        <form class="d-flex" action="{{ route('search') }}" method="POST">
+                        <form class="d-flex" action="{{ route('search') }}" method="GET">
                             @csrf
                             <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>

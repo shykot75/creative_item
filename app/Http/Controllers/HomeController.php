@@ -26,16 +26,16 @@ class HomeController extends Controller
         if($request->filter){
             if($request->category_id){
                 $products = Product::where('category_id',$request->category_id)->get();
-                dd($products);
+
             }
 
             if($request->price == 'asc'){
                 $products = Product::orderBy('price', 'ASC')->get();
-                return $products;
+
             }
             if($request->price == 'desc'){
                 $products = Product::orderBy('price', 'DESC')->get();
-                return $products;
+
             }
 
 
@@ -47,6 +47,10 @@ class HomeController extends Controller
 
         return view('search', compact('products', 'categories'));
 
+    }
+
+    public function filter(Request $request){
+        return $request;
     }
 
 

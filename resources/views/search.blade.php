@@ -13,7 +13,7 @@
 
                     <div class="row">
                         <div class="col-md-12 my-2">
-                            <form action="{{ route('search') }}" method="POST">
+                            <form  method="GET">
                                 @csrf
                                 <div class="row form-group">
                                     <div class="col-md-3">
